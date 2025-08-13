@@ -1,0 +1,18 @@
+# Core web framework
+streamlit>=1.28.0
+
+# Async HTTP client
+aiohttp>=3.8.5
+
+# Data processing
+pandas>=2.0.0
+
+# HTML parsing
+beautifulsoup4>=4.12.0
+
+# Excel export support
+openpyxl>=3.1.0
+
+# Additional utilities (if needed)
+lxml>=4.9.0
+requests>=2.31.0

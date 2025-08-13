@@ -644,7 +644,7 @@ def main():
                 
                 # Store results in session state
                 st.session_state.crawl_results = df
-                display_results_and_exports(df, "crawl")
+                display_results_and_exports(df, "crawl_new")
                 
             except Exception as e:
                 st.error(f"❌ Crawling failed: {str(e)}")
@@ -715,19 +715,19 @@ def main():
                 
                 # Store results in session state
                 st.session_state.validation_results = df
-                display_results_and_exports(df, "validation")
+                display_results_and_exports(df, "validation_new")
                 
             except Exception as e:
                 st.error(f"❌ Validation failed: {str(e)}")
     
-    # Display existing results if available
+    # Display existing results if available (with unique keys to avoid conflicts)
     if 'crawl_results' in st.session_state and mode == "🕷️ Crawl Website":
         st.subheader("📊 Previous Crawl Results")
-        display_results_and_exports(st.session_state.crawl_results, "crawl")
+        display_results_and_exports(st.session_state.crawl_results, "crawl_previous")
     
     if 'validation_results' in st.session_state and mode == "✅ Validate URLs/Sitemap":
         st.subheader("📊 Previous Validation Results")
-        display_results_and_exports(st.session_state.validation_results, "validation")
+        display_results_and_exports(st.session_state.validation_results, "validation_previous")
 
 def display_results_and_exports(df: pd.DataFrame, mode_prefix: str = ""):
     """Display results and export options with persistent filters"""
@@ -757,7 +757,7 @@ def display_results_and_exports(df: pd.DataFrame, mode_prefix: str = ""):
     # Data preview with persistent filters
     st.subheader("🔍 Results Preview")
     
-    # Filter options with unique keys
+    # Filter options with unique keys based on mode_prefix
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
@@ -924,4 +924,4 @@ st.markdown(
 )
 
 if __name__ == "__main__":
-    main()  
+    main()
